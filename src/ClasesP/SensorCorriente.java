@@ -4,10 +4,10 @@ package ClasesP;
 import java.util.Date;
 
 
-public class scorr extends sensor {
+public class SensorCorriente extends Sensor {
     private int cantCorriente;
 
-    public scorr(Date fechaInstalacion, String marca, int referencia, int cantCorriente) {
+    public SensorCorriente(Date fechaInstalacion, String marca, int referencia, int cantCorriente) {
         super(fechaInstalacion, marca, referencia);
         this.cantCorriente = cantCorriente;
     }

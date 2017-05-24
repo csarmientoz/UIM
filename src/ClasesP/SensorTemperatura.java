@@ -4,10 +4,10 @@ package ClasesP;
 import java.util.Date;
 
 
-public class stemp extends sensor{
+public class SensorTemperatura extends Sensor{
     private int tempActual;
 
-    public stemp(Date fechaInstalacion, String marca, int referencia, int tempActual) {
+    public SensorTemperatura(Date fechaInstalacion, String marca, int referencia, int tempActual) {
         super(fechaInstalacion, marca, referencia);
         this.tempActual = tempActual;
     }

@@ -4,10 +4,10 @@ package ClasesP;
 import java.util.Date;
 
 
-public class slluvia extends sensor{
+public class SensorLluvia extends Sensor{
     private double cantAgua;
 
-    public slluvia(Date fechaInstalacion, String marca, int referencia, double cantAgua ) {
+    public SensorLluvia(Date fechaInstalacion, String marca, int referencia, double cantAgua ) {
         super(fechaInstalacion, marca, referencia);
         this.cantAgua = cantAgua;
     }

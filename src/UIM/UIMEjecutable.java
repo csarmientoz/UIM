@@ -1,13 +1,12 @@
 package UIM;
 
 import ClasesP.UIM;
-import ClasesP.ciudad;
-import ClasesP.estacion;
-import ClasesP.registro;
-import ClasesP.scorr;
-import ClasesP.sensor;
-import ClasesP.slluvia;
-import ClasesP.stemp;
+import ClasesP.Ciudad;
+import ClasesP.Estacion;
+import ClasesP.SensorCorriente;
+import ClasesP.Sensor;
+import ClasesP.SensorLluvia;
+import ClasesP.SensorTemperatura;
 import Excepciones.NumeroCiudadesException;
 import Excepciones.NumeroEstacionesException;
 import Excepciones.NumeroSensoresException;
@@ -22,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ClasesP.Registro;
 
 public class UIMEjecutable {
 
@@ -30,8 +30,8 @@ public class UIMEjecutable {
         Archivo datos = new Archivo();
         datosUIM=datos.LeerArchivo();
 
-        ArrayList<ciudad> ciudades = new ArrayList<>();
-        ArrayList<estacion> estaciones = new ArrayList<>();
+        ArrayList<Ciudad> ciudades = new ArrayList<>();
+        ArrayList<Estacion> estaciones = new ArrayList<>();
 
         int posicion = 0;
         for (String d1 : datosUIM) {
@@ -43,7 +43,7 @@ public class UIMEjecutable {
             posicion+=2;            
             do {
                 String nombreEstacion = datosSeparados[posicion];
-                estacion estacion = new estacion(nombreEstacion, "", new Date());
+                Estacion estacion = new Estacion(nombreEstacion, "", new Date());
                 posicion += 1;
                 int regSensores = Integer.parseInt(datosSeparados[posicion]);
                 posicion += 1;
@@ -52,10 +52,10 @@ public class UIMEjecutable {
                         String[] datosSensores = datosSeparados[posicion].split(";");
                         DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                         Date date = format.parse(datosSensores[0]);
-                        sensor temperatura = new stemp(date, "", 0, Integer.parseInt(datosSensores[1]));
-                        sensor agua = new slluvia(date, "", 0, Integer.parseInt(datosSensores[2]));
-                        sensor electricidad = new scorr(date, "", 0, Integer.parseInt(datosSensores[3]));
-                        estacion.setSensores(new sensor[]{temperatura, agua, electricidad});
+                        Sensor temperatura = new SensorTemperatura(date, "", 0, Integer.parseInt(datosSensores[1]));
+                        Sensor agua = new SensorLluvia(date, "", 0, Integer.parseInt(datosSensores[2]));
+                        Sensor electricidad = new SensorCorriente(date, "", 0, Integer.parseInt(datosSensores[3]));
+                        estacion.setSensores(new Sensor[]{temperatura, agua, electricidad});
                         posicion += 1;
                         regSensores -= 1;
                     } catch (ParseException ex) {
@@ -65,7 +65,7 @@ public class UIMEjecutable {
                 estaciones.add(estacion);
                 numEstaciones -= 1;
             } while (numEstaciones != 0);
-            ciudad city = new ciudad(estaciones, nombreCiudad );
+            Ciudad city = new Ciudad(estaciones, nombreCiudad );
             ciudades.add(city);
         }
         

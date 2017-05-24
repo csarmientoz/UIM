@@ -3,12 +3,12 @@ package ClasesP;
 import Excepciones.NumeroCiudadesException;
 import java.util.ArrayList;
 
-public class UIM implements registro {
+public class UIM implements Registro {
 
-    private ArrayList<registro> registros;
-    private ArrayList<ciudad> ciudades;
+    private ArrayList<Registro> registros;
+    private ArrayList<Ciudad> ciudades;
 
-    public UIM(ArrayList<ciudad> ciudades) throws NumeroCiudadesException {
+    public UIM(ArrayList<Ciudad> ciudades) throws NumeroCiudadesException {
         this.ciudades = ciudades;
 
         if (ciudades.size() > 12) {
@@ -19,12 +19,12 @@ public class UIM implements registro {
     @Override
     public void generarRegistro() {
 
-        for (ciudad c : ciudades) {
+        for (Ciudad c : ciudades) {
             System.out.println("El registro de ciudades segun el archivo cargado es: " + " " + c.getEstaciones());
-            for (estacion e : c.getEstaciones()) {
+            for (Estacion e : c.getEstaciones()) {
                 System.out.println("El registro de estaciones segun el archivo cargado es: " + " " + e.nombre + " " + e.ubicacion + " "
                         + e.fechaInstalacion);
-                for (sensor s : e.getSensores()) {
+                for (Sensor s : e.getSensores()) {
                     System.out.println("El registro de sensores segun el archivo cargado es: " + " " + s.marca + " " + s.referencia);
                 }
             }
@@ -34,20 +34,20 @@ public class UIM implements registro {
 
     @Override
     public void calcularPromedio() {
-        for (ciudad c : ciudades) {
+        for (Ciudad c : ciudades) {
             double agua = 0;
             int temp = 0;
             int corriente = 0;
-            for (estacion e : c.getEstaciones()) {
-                for (sensor s : e.getSensores()) {
-                    if (s instanceof slluvia) {
-                        agua += ((slluvia) s).getCantAgua();
+            for (Estacion e : c.getEstaciones()) {
+                for (Sensor s : e.getSensores()) {
+                    if (s instanceof SensorLluvia) {
+                        agua += ((SensorLluvia) s).getCantAgua();
                     }
-                    if (s instanceof stemp) {
-                        temp += ((stemp) s).getTempActual();
+                    if (s instanceof SensorTemperatura) {
+                        temp += ((SensorTemperatura) s).getTempActual();
                     }
-                    if (s instanceof scorr) {
-                        corriente += ((scorr) s).getCantCorriente();
+                    if (s instanceof SensorCorriente) {
+                        corriente += ((SensorCorriente) s).getCantCorriente();
                     }
 
                 }
