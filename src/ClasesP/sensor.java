@@ -1,20 +1,16 @@
-
-package Clases;
+package ClasesP;
 
 import java.util.Date;
 
+public abstract class sensor{
 
-public abstract class sensor extends estacion{
     protected String marca;
     protected int referencia;
 
-    public sensor(String marca, int referencia, String nombre, String ubicacion, Date fechaInstalacion) {
-        super(nombre, ubicacion, fechaInstalacion);
+    public sensor(Date fechaInstalacion, String marca, int referencia) {
         this.marca = marca;
         this.referencia = referencia;
     }
-
-   
 
     public String getMarca() {
         return marca;
@@ -31,9 +27,6 @@ public abstract class sensor extends estacion{
     public void setReferencia(int referencia) {
         this.referencia = referencia;
     }
-    
-    public abstract void calcularPromedioValores();
-    
     
     
 }

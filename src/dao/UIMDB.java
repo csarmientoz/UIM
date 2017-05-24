@@ -1,7 +1,7 @@
 
 package dao;
 
-import Clases.UIM;
+import ClasesP.UIM;
 import java.io.FileNotFoundException;
 
 
